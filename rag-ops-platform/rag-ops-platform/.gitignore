@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+
+# Environments
+.env
+.venv
+venv/
+env/
+ENV/
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Kubernetes / K3d
+kubeconfig
+*.kubeconfig
+.kube/
+
+# Docker
+*.tar
+
+# Airflow
+airflow.db
+airflow/logs/
+airflow/plugins/
+standalone_admin_password.txt
+
+# Data / models
+*.pkl
+*.bin
+*.onnx
+models/
+data/raw/
+
+# Secrets (never commit these)
+secrets/
+*.pem
+*.key
+*.crt

@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ragops
+  labels:
+    app.kubernetes.io/managed-by: kubectl
+    environment: production
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ragops-config
+  namespace: ragops
+data:
+  POSTGRES_DB: ragops
+  POSTGRES_USER: ragops
+  POSTGRES_HOST: postgres-service
+  POSTGRES_PORT: "5432"
+  MINIO_ENDPOINT: minio-service:9000
+  MINIO_BUCKET: runbooks
+  MINIO_SECURE: "false"
+  CHROMA_HOST: chromadb-service
+  CHROMA_PORT: "8000"
+  CHROMA_COLLECTION: runbooks
+  OLLAMA_BASE_URL: http://ollama-service:11434
+  OLLAMA_MODEL: mistral
+  OLLAMA_EMBED_MODEL: nomic-embed-text
+  APP_ENV: production
+  LOG_LEVEL: INFO
+  CHUNK_SIZE: "500"
+  CHUNK_OVERLAP: "50"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ragops-secrets
+  namespace: ragops
+type: Opaque
+stringData:
+  POSTGRES_PASSWORD: ragops_secret_change_in_prod
+  MINIO_ACCESS_KEY: minioadmin
+  MINIO_SECRET_KEY: minioadmin_change_in_prod
